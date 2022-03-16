@@ -6,7 +6,9 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -42,21 +44,26 @@ public class UserController {
 		// knows how to fix it.
 	}
 	
+	// Find a user by their id
+	@GetMapping("/{id}") // allows the client to send the request http://localhost:5000/api/users/2
+	public ResponseEntity<User> findUserById(@PathVariable("id") int id) {
 	
+		return ResponseEntity.ok(userServ.getById(id));
+	}
 	
+	// Find a user by their username
 	
+	// allows the client to send the request http://localhost:5000/api/users/johndoe
+	@GetMapping("/find/{username}") // allows the client to send the request http://localhost:5000/api/users/2
+	public ResponseEntity<User> findUserByUsername(@PathVariable("username") String username) {
 	
+		return ResponseEntity.ok(userServ.getByUsername(username));
+	}
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+	// Delete a user when they delete request to the url/id
+	@DeleteMapping("/{id}")
+	public void removeUser(@PathVariable("id") int id) {
+		
+		userServ.remove(id);
+	}
 }
