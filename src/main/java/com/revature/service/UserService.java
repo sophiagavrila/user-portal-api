@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.revature.data.AddressRespository;
 import com.revature.data.UserRepository;
 import com.revature.exception.UserNotFoundException;
 import com.revature.model.User;
@@ -22,6 +23,9 @@ public class UserService {
 	@Autowired // Spring IoC container will inject the auto-generated Impl class of this interface
 	private UserRepository userRepo; // as a dependency of this Service Class
 
+	@Autowired
+	private AddressRespository addressRepo;
+	
 	/**
 	 * @Transactional on Service methods:
 	 * 				  In the case that multiple dao methods were
@@ -39,6 +43,12 @@ public class UserService {
 	// Every time that this method is invoked, we want to begin a new Transaction (unit of work against the DB)
 	@Transactional(propagation=Propagation.REQUIRES_NEW)
 	public User add(User u) {
+		
+		// check is the user object being added owns any addressed (u.getAddresses != null)
+		if (u.getAddresses() != null) {
+			u.getAddresses().forEach(address -> addressRepo.save(address));
+		}
+			// if it isn't null, iterate over them and add each Address object
 		
 		return userRepo.save(u);
 	}
