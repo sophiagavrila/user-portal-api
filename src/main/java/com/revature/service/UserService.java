@@ -36,8 +36,7 @@ public class UserService {
 	public Set<User> findAll() {
 		
 		// here we are using the stream API to transform the List to a Set to avoid duplicate
-		return userRepo.findAll().stream()
-				.collect(Collectors.toSet());
+		return (Set) userRepo.findAll();
 	}
 	
 	// Every time that this method is invoked, we want to begin a new Transaction (unit of work against the DB)

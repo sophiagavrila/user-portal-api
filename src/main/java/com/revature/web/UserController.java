@@ -30,7 +30,7 @@ public class UserController {
 	@GetMapping
 	public ResponseEntity<Set<User>> getAll() {
 		
-		// Returning a ResponseEntity object alllows you to edit parts of the HTTP response like the status
+		// Returning a ResponseEntity object allows you to edit parts of the HTTP response like the status
 		return ResponseEntity.ok(userServ.findAll());
 		
 	}

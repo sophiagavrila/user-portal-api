@@ -12,9 +12,7 @@ import com.revature.model.User;
 @Repository // Sterotype Annotation! Repository, Controller, RestController, Service
 public interface UserRepository extends JpaRepository<User, Integer> { // JpaRespoitory extends Paging&SortingRepository  extends CrudReposiotry
 
-	// spring automatically creates .save(), update(), delete, findAll(), findById()....
-	
-	// Property Expressions ~ custom methods to find Users based on their properties
+	// spring automatically creates .save(), update(), delete, f-sed on their properties
 	Optional<User> findByUsername(String username);	
 	
 	List<User> findByOrderByLastName(); // returns all the users in the DB sorted by their last name
