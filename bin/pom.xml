@@ -26,7 +26,17 @@
 			<version>3.0.0</version>
 		</dependency>
 
-<!-- We need this so that Spring Boot recognizes the @Configuration annotation over our SwaggerConfig file -->
+		<!-- https://mvnrepository.com/artifact/org.springframework.security/spring-security-crypto -->
+		<!-- This would be the dependency  that we could use to encrypt any password recieved from the user -->
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-crypto</artifactId>
+			<version>5.5.5</version>
+		</dependency>
+
+
+		<!-- We need this so that Spring Boot recognizes the @Configuration annotation 
+			over our SwaggerConfig file -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-configuration-processor</artifactId>
@@ -71,7 +81,7 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-validation</artifactId>
 		</dependency>
-		
+
 		<!-- Prometheus dependencies -->
 		<dependency>
 			<groupId>io.micrometer</groupId>
@@ -81,10 +91,34 @@
 			<groupId>io.micrometer</groupId>
 			<artifactId>micrometer-registry-prometheus</artifactId>
 		</dependency>
-		
-		<!-- Prometheus will feed this data to Grafana (creates a dashboard)  -->
-		
-		
+
+		<!-- Prometheus will feed this data to Grafana (creates a dashboard) -->
+
+			<!-- https://mvnrepository.com/artifact/io.jsonwebtoken/jjwt-api -->
+		<!-- dependency for JWT -->
+		<dependency>
+			<groupId>io.jsonwebtoken</groupId>
+			<artifactId>jjwt-api</artifactId>
+			<version>0.11.2</version>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/io.jsonwebtoken/jjwt-impl -->
+		<dependency>
+			<groupId>io.jsonwebtoken</groupId>
+			<artifactId>jjwt-impl</artifactId>
+			<version>0.11.2</version>
+			<scope>runtime</scope>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/io.jsonwebtoken/jjwt-jackson -->
+		<dependency>
+			<groupId>io.jsonwebtoken</groupId>
+			<artifactId>jjwt-jackson</artifactId>
+			<version>0.11.2</version>
+			<scope>runtime</scope>
+		</dependency>
+	
+
 	</dependencies>
 
 	<build>

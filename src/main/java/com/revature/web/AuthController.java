@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.revature.dto.Credentials;
 import com.revature.model.User;
 import com.revature.service.UserService;
 import com.revature.util.JwtTokenManager;
@@ -27,17 +28,24 @@ import com.revature.util.JwtTokenManager;
 public class AuthController {
 	
 	// we are going to be calling the userService to check whether a username/password combo exists
-	@Autowired
 	private UserService userService;
-	
-	@Autowired
 	private JwtTokenManager tokenManager;
 	
+	
+	@Autowired
+	public AuthController(UserService userService, JwtTokenManager tokenManager) {
+		super();
+		this.userService = userService;
+		this.tokenManager = tokenManager;
+	}
+
+
+
 	@PostMapping("/login") // http://host:5000/api/login
-	public User login(@RequestBody User user, HttpServletResponse response) {
+	public User login(@RequestBody Credentials creds, HttpServletResponse response) {
 			
 		// authenticate the user (call the service to do this)
-		user = userService.authenticate(user);
+		User user = userService.authenticate(creds);
 		
 		// IF the user is not null, then issue a token
 		if (user != null) {

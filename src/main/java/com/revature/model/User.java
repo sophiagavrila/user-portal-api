@@ -30,6 +30,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @JsonIdentityInfo(generator=ObjectIdGenerators.PropertyGenerator.class, property="id")
+//Jackson Databind is our object mapper, so we're telling Jackson that the id field of an object uniquely identifies
+//an Address object
 public class User {
 
 	@Id
